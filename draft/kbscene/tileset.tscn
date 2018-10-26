@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://draft/kbscene/tileset.png" type="Texture" id=1]
+
+
+[node name="tileset" type="Node2D"]
+
+[node name="Wall" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+offset = Vector2( 25, 25 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 50, 50 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
+
+

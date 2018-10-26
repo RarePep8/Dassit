@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://maps/GrassTileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://sprites/tophat/tophat.tscn" type="PackedScene" id=2]
+
+[node name="TileMap" type="TileMap" index="0"]
+
+position = Vector2( 150, 140 )
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 20, 20 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 131090, 0, 0, 131097, 0, 0, 196623, 0, 0, 196631, 0, 0, 262158, 0, 0, 262166, 0, 0, 327693, 0, 0, 327701, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393236, 0, 0, 458771, 0, 0, 524306, 0, 0, 589841, 0, 0, 655376, 0, 0, 720911, 0, 0, 786446, 0, 0, 917503, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0 )
+_sections_unfolded = [ "Cell", "Transform" ]
+
+[node name="KinematicBody2D" parent="." index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 40, -60 )
+
+
