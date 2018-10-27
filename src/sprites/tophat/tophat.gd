@@ -2,25 +2,34 @@ extends KinematicBody2D
 
 const GRAVITY = 400.0
 const WALK_SPEED = 200
-
+const JUMP_SPEED = 250
 var velocity = Vector2()
 
 func _physics_process(delta):
     velocity.y += delta*GRAVITY
     if Input.is_action_pressed("ui_left"):
-        velocity.x = -WALK_SPEED
+        if(velocity.x > 0 and is_on_floor()):
+            velocity.x = 0
+        if(velocity.x > -WALK_SPEED):
+            velocity.x += -5
     elif Input.is_action_pressed("ui_right"):
-        velocity.x =  WALK_SPEED
+        if(velocity.x < 0 and is_on_floor()):
+            velocity.x = 0
+        if(velocity.x < WALK_SPEED):
+            velocity.x +=  5
     else:
-        velocity.x = 0
+        if(velocity.x > 0):
+            velocity.x += -3
+        if(velocity.x < 0):
+            velocity.x += 3
 
     if is_on_floor():
         if Input.is_action_pressed("ui_up"):
-            velocity.y = -WALK_SPEED
+            velocity.y = -JUMP_SPEED
     
-    if velocity.x != 0:
+    if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
         $AnimatedSprite.animation = "right"
-        $AnimatedSprite.flip_h = velocity.x < 0
+        $AnimatedSprite.flip_h = Input.is_action_pressed("ui_left")
     else:
         
         $AnimatedSprite.animation = "default"
