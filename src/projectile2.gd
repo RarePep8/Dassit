@@ -15,7 +15,7 @@ func _ready():
 #    pass
 
 func _physics_process(delta):
-    var collision = move_and_collide(direction_scale * Vector2(1,0))
+    var collision = move_and_collide(direction_scale * Vector2(10,0))
     if(collision != null and collision.get_collider().get_name() == "TileMap"):
         print(collision.get_collider().get_name())
         destroy()
