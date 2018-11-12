@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://sprites/tophat/tophat.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player1.gd" type="Script" id=1]
 
 [node name="Player1" type="Node"]
 
-[node name="KinematicBody2D" parent="." index="0" instance=ExtResource( 1 )]
+script = ExtResource( 1 )
 
 

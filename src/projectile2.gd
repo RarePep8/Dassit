@@ -7,8 +7,7 @@ var direction_scale = 1;
 func _ready():
     # Called when the node is added to the scene for the first time.
     # Initialization here
-    connect("body_enter", self, "contact")
-
+    pass
 #func _process(delta):
 #    # Called every frame. Delta is time since last frame.
 #    # Update game logic here.
@@ -20,9 +19,6 @@ func _physics_process(delta):
         print(collision.get_collider().get_name())
         destroy()
     
-func contact(body):
-    print("hi")
-    destroy()
     
 func destroy():
     queue_free()

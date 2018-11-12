@@ -5,15 +5,23 @@ const WALK_SPEED = 250
 const JUMP_SPEED = 550
 var velocity = Vector2()
 var can_jump_second = true
-    
+var shoot_key = ""
+var left_key = ""
+var right_key = ""
+var jump_key = ""
+func init(var shoot_key, var left_key, var right_key, var up_key):
+    self.shoot_key = shoot_key
+    self.left_key = left_key
+    self.right_key = right_key
+    self.jump_key = up_key
 func _physics_process(delta):
     velocity.y += delta*GRAVITY
-    if Input.is_action_pressed("ui_left"):
+    if Input.is_action_pressed(left_key):
         if(velocity.x > 0 and is_on_floor()):
             velocity.x = 0
         if(velocity.x > -WALK_SPEED):
             velocity.x += -8
-    elif Input.is_action_pressed("ui_right"):
+    elif Input.is_action_pressed(right_key):
         if(velocity.x < 0 and is_on_floor()):
             velocity.x = 0
         if(velocity.x < WALK_SPEED):
@@ -27,7 +35,7 @@ func _physics_process(delta):
     if is_on_floor():
         can_jump_second = true
     if is_on_floor() or can_jump_second:
-        if Input.is_action_just_pressed("ui_up"):
+        if Input.is_action_just_pressed(jump_key):
             if(can_jump_second and not is_on_floor()):
                 can_jump_second = false
                 velocity.y = -0.8*JUMP_SPEED
@@ -35,9 +43,9 @@ func _physics_process(delta):
                 velocity.y = -JUMP_SPEED
             
     
-    if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
+    if Input.is_action_pressed(left_key) or Input.is_action_pressed(right_key):
         $AnimatedSprite.animation = "right"
-        $AnimatedSprite.flip_h = Input.is_action_pressed("ui_left")
+        $AnimatedSprite.flip_h = Input.is_action_pressed(left_key)
     else:
         
         $AnimatedSprite.animation = "default"
@@ -49,7 +57,7 @@ func _physics_process(delta):
     velocity = move_and_slide(velocity, Vector2(0, -1))
 
 
-    if Input.is_action_just_pressed("p1_shoot"):
+    if Input.is_action_just_pressed(shoot_key):
         var bullet = load("res://projectile2.tscn")
         var bi = bullet.instance()
         bi.position = get_position() + Vector2(-15 if $AnimatedSprite.flip_h else 15, 0)
