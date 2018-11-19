@@ -10,6 +10,7 @@ func _ready():
     var character = load("res://sprites/tophat/tophat.tscn")
     var character_instance = character.instance()
     character_instance.init("p1_shoot", "p1_left", "p1_right", "p1_up")
+    character_instance.position = Vector2(100,400)
     add_child(character_instance)
 
 #func _process(delta):

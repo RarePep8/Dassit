@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const GRAVITY = 1500.0
+const GRAVITY = 1500
 const WALK_SPEED = 250
 const JUMP_SPEED = 550
 var velocity = Vector2()
@@ -9,13 +9,20 @@ var shoot_key = ""
 var left_key = ""
 var right_key = ""
 var jump_key = ""
+var on_floor = false
 func init(var shoot_key, var left_key, var right_key, var up_key):
     self.shoot_key = shoot_key
     self.left_key = left_key
     self.right_key = right_key
     self.jump_key = up_key
+func fix_on_moving_platform(p_velocity):
+    if on_floor:
+        move_and_slide(p_velocity, Vector2(0, -1))
+        on_floor = true
 func _physics_process(delta):
-    velocity.y += delta*GRAVITY
+    print(velocity.y)
+    if(!on_floor):
+        velocity.y += GRAVITY*delta
     if Input.is_action_pressed(left_key):
         if(velocity.x > 0 and is_on_floor()):
             velocity.x = 0
@@ -31,10 +38,9 @@ func _physics_process(delta):
             velocity.x += -5
         if(velocity.x < 0):
             velocity.x += 5
-
-    if is_on_floor():
+    if is_on_floor() or on_floor:
         can_jump_second = true
-    if is_on_floor() or can_jump_second:
+    if is_on_floor() or can_jump_second or on_floor:
         if Input.is_action_just_pressed(jump_key):
             if(can_jump_second and not is_on_floor()):
                 can_jump_second = false

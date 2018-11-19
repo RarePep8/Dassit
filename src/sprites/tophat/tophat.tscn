@@ -35,9 +35,9 @@ position = Vector2( 31.4798, 5.75817 )
 input_pickable = false
 collision_layer = 2
 collision_mask = 1
-collision/safe_margin = 0.08
+collision/safe_margin = 0.008
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

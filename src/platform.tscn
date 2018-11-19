@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://platform.gd" type="Script" id=1]
+[ext_resource path="res://draft/Old_world.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=3]
+
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( -0.25, 64.5, 48.875, 10 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 23.9625, 4.70976 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 23.7147, 4.1621 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 0
+collision_mask = 6
+collision/safe_margin = 0.008
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index", "collision" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="." index="2"]
+
+position = Vector2( 2.71605, -38.0354 )
+scale = Vector2( 0.993631, 0.276414 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 6
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( -2.7476, 116.28 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+
